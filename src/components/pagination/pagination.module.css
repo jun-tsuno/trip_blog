@@ -1,0 +1,16 @@
+.paginate {
+	display: flex;
+	justify-content: center;
+	color: #413f42;
+}
+
+.paginate li {
+	padding: 0.3rem 0.8rem;
+	margin: 0 0.1rem;
+}
+
+.paginate .active {
+	color: white;
+	border-radius: 10%;
+	background-color: #413f42;
+}
