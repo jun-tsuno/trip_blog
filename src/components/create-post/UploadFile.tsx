@@ -62,9 +62,7 @@ const UploadFile = (props: UploadFileProps) => {
 	};
 
 	const imageDelete = async () => {
-		await axios.delete('/api/upload/', {
-			params: { fileIdentifier },
-		});
+		await axios.post('/api/delete/', { fileIdentifier });
 		setFile({ file: null, fileName: '' });
 		setFileIdentifier('');
 	};
@@ -90,12 +88,30 @@ const UploadFile = (props: UploadFileProps) => {
 					<p className='text-center'>Upload an Image (*optional)</p>
 					<p>(Maximum 2 MB)</p>
 				</label>
+
 				<ImageIcon
 					width={50}
 					height={50}
 					className={`${fileIdentifier ? '' : 'hidden'}`}
 				/>
+
 				<div className='py-3 px-8'>
+					<div className='flex items-center gap-x-3 py-3'>
+						<p className='text-secondary-dark-gray text-sm'>Selected File:</p>
+						<span
+							className={`mr-10 text-lg ${uploading ? 'text-gray-500' : ''}`}
+						>
+							{file?.fileName}
+						</span>
+						<CustomButton
+							outline
+							onClick={imageDelete}
+							className={`${fileIdentifier ? '' : 'hidden'}`}
+						>
+							Remove
+						</CustomButton>
+					</div>
+
 					<CustomButton
 						onClick={imageUpload}
 						className={`w-32 h-10 ${fileIdentifier ? 'hidden' : ''}`}
@@ -105,18 +121,6 @@ const UploadFile = (props: UploadFileProps) => {
 					>
 						{uploading ? 'uploading...' : 'upload'}
 					</CustomButton>
-					<div className='flex'>
-						<p className={`mr-10 ${uploading ? 'text-gray-500' : ''}`}>
-							{file?.fileName}
-						</p>
-						<CustomButton
-							outline
-							onClick={imageDelete}
-							className={`${fileIdentifier ? '' : 'hidden'}`}
-						>
-							Remove
-						</CustomButton>
-					</div>
 				</div>
 			</div>
 		</>

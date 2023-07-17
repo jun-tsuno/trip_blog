@@ -19,7 +19,7 @@ const s3Client = new S3Client({
 	},
 });
 
-export const uploadFile = (file: any, fileName: any, mimetype: any) => {
+export const uploadFile = async (file: any, fileName: any, mimetype: any) => {
 	const uploadParams = {
 		Bucket: bucketName, // which bucket to store
 		Key: fileName, // if the Key exist in the s3, it will be overwritten. Use uniq key name
@@ -27,16 +27,36 @@ export const uploadFile = (file: any, fileName: any, mimetype: any) => {
 		ContentType: mimetype,
 	};
 
-	return s3Client.send(new PutObjectCommand(uploadParams));
+	try {
+		const res = await s3Client.send(new PutObjectCommand(uploadParams));
+
+		if (res.$metadata.httpStatusCode !== 200) {
+			return { message: 'fail to upload', XPathResult: false };
+		}
+		return { message: 'successfully uploaded', result: true };
+	} catch (error) {
+		console.log(error);
+		return { message: 'something went wrong', result: false };
+	}
 };
 
-export const deleteFile = (fileIdentifier: string) => {
+export const deleteFile = async (fileIdentifier: string) => {
 	const deleteParams = {
 		Bucket: bucketName,
 		Key: fileIdentifier,
 	};
 
-	return s3Client.send(new DeleteObjectCommand(deleteParams));
+	try {
+		const res = await s3Client.send(new DeleteObjectCommand(deleteParams));
+
+		if (res.$metadata.httpStatusCode !== 204) {
+			return { message: 'fail to delete', XPathResult: false };
+		}
+		return { message: 'successfully deleted', result: true };
+	} catch (error) {
+		console.log(error);
+		return { message: 'something went wrong', result: false };
+	}
 };
 
 export const getObjectSignedUrl = async (key: string | undefined) => {

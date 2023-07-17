@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import multer from 'multer';
 import { uploadFile } from '@/server/db/config/s3';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export const config = {
 	api: {
@@ -28,7 +29,6 @@ export default async function handler(req: any, res: any) {
 			await uploadFile(file.buffer, fileName, file.mimetype);
 			// return file name as an identifier
 			return res.status(201).json({ message: 'success', fileName });
-
 		default:
 			return;
 	}

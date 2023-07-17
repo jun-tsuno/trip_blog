@@ -70,9 +70,9 @@ const NavBar = () => {
 										<div className='ml-auto flex items-center'>
 											{user ? (
 												<>
-													<div className='flex mr-5 items-center'>
+													<div className='flex mr-5 items-center min-w-[100px]'>
 														<UserIcon className='mr-1' />
-														<span className='font-bold'>{user.username}</span>
+														<p className='font-bold'>{user.username}</p>
 													</div>
 													<CustomButton outline onClick={handleLogout}>
 														LogOut
