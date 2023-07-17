@@ -27,7 +27,7 @@ const LargePostCard = ({ postData }: LargePostCardProps) => {
 					<h3 className='mb-2 text-2xl font-bold tracking-tight'>{title}</h3>
 					<div className='flex justify-between pb-2'>
 						<StarRating value={rating} readonly size={22} />
-						<span className='mx-3'>Posted By: {userName}</span>
+						<span className='mx-3'>Posted By: {userName ?? '-'}</span>
 					</div>
 					<p>{`${city}, ${country}`}</p>
 					<LinesEllipsis
