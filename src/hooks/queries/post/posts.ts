@@ -12,7 +12,6 @@ export const query = gql`
 			country
 			city
 			rating
-			postedUser
 			imageUrl
 			updatedAt
 		}

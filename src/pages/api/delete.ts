@@ -9,8 +9,8 @@ export default async function handler(
 		case 'POST':
 			const fileIdentifier = req.body.fileIdentifier as string;
 
-			const res = await deleteFile(fileIdentifier);
-			return res;
+			const s3Res = await deleteFile(fileIdentifier);
+			return res.status(200).json(s3Res);
 		default:
 			return;
 	}

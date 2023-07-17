@@ -25,8 +25,6 @@ const CreatePost: NextPage = () => {
 		fileName: '',
 	});
 
-	console.log(file);
-
 	const {
 		register,
 		handleSubmit,
