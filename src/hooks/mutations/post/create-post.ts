@@ -14,7 +14,7 @@ export const CREATE_POST = gql`
 			country
 			city
 			rating
-			postedUser
+			userName
 			fileIdentifier
 			imageUrl
 			createdAt

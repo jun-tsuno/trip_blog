@@ -1,8 +1,7 @@
 ## Travel blog app
 
 - Trip blog app, where user can share their experience, see posts, and comment on the posts.
-  <img width="500" alt="Screenshot 2023-05-05 at 12 17 18 AM" src="https://user-images.githubusercontent.com/110567844/236398481-eb3c8813-4ddf-4c03-96a1-a453111128d2.png">
-  <img width="500" alt="Screenshot 2023-05-05 at 12 18 38 AM" src="https://user-images.githubusercontent.com/110567844/236398332-466c3f37-f37f-4053-99b9-372baaa626b3.png">
+  <img width="600" alt="screen-shot" src="https://github.com/jun-tsuno/trip_blog/assets/110567844/0b3e8693-05a4-4c47-9908-670e41741055">
 
 ## Built With
 

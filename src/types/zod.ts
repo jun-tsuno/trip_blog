@@ -1,11 +1,15 @@
 import * as z from 'zod';
+import { ERROR_MESSAGE } from '@/helpers/constants';
 
 // type for create post form
 export const createPostSchema = z.object({
-	title: z.string().min(1),
-	country: z.string().min(1),
-	city: z.string().min(1),
-	rating: z.number().min(0).max(5),
+	title: z.string().min(1, { message: ERROR_MESSAGE.REQUIRED }),
+	country: z.string().min(1, { message: ERROR_MESSAGE.REQUIRED }),
+	city: z.string().min(1, { message: ERROR_MESSAGE.REQUIRED }),
+	rating: z
+		.number({ invalid_type_error: 'Only a Number is allowed' })
+		.min(0)
+		.max(5, { message: ERROR_MESSAGE.REQUIRED }),
 	description: z.string().max(300),
 });
 

@@ -10,7 +10,7 @@ export const AREA_TOP_POSTS = gql`
 			area
 			country
 			city
-			postedUser
+			userName
 			rating
 			fileIdentifier
 			imageUrl

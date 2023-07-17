@@ -19,7 +19,7 @@ const CreatePost: NextPage = () => {
 	const [selectOptionError, setSelectOptionError] = useState<boolean>(false);
 
 	const [fileIdentifier, setFileIdentifier] = useState('');
-	const [uploading, setUploading] = useState<boolean>(false);
+	const [uploading, setUploading] = useState(false);
 	const [file, setFile] = useState<{ file: File | null; fileName: string }>({
 		file: null,
 		fileName: '',

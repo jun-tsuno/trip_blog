@@ -47,24 +47,20 @@ const UploadFile = (props: UploadFileProps) => {
 		fileData.append('file', file.file!);
 		setUploading(true);
 
-		await axios
-			.post('/api/upload', fileData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
-			})
-			.then((response) => {
-				const fileIdentifier = response.data.fileName;
+		const res = await axios.post('/api/upload', fileData, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		});
 
-				setFileIdentifier(fileIdentifier);
-				setUploading(false);
-			});
+		const fileIdentifier = res.data.fileName;
+		setFileIdentifier(fileIdentifier);
+		setUploading(false);
 	};
 
 	const imageDelete = async () => {
-		await axios.delete('/api/upload/', {
-			params: { fileIdentifier },
-		});
+		await axios.post('/api/delete/', { fileIdentifier });
+
 		setFile({ file: null, fileName: '' });
 		setFileIdentifier('');
 	};
@@ -86,37 +82,40 @@ const UploadFile = (props: UploadFileProps) => {
 						fileIdentifier ? 'hidden' : ''
 					}`}
 				>
-					<UploadIcon width={60} height={60} fill='#75CAD6' />
+					<UploadIcon width={50} height={50} fill='#75CAD6' />
 					<p className='text-center'>Upload an Image (*optional)</p>
 					<p>(Maximum 2 MB)</p>
 				</label>
+
 				<ImageIcon
 					width={50}
 					height={50}
 					className={`${fileIdentifier ? '' : 'hidden'}`}
 				/>
-				<div className='py-3 px-8'>
-					<CustomButton
-						onClick={imageUpload}
-						className={`w-32 h-10 ${fileIdentifier ? 'hidden' : ''}`}
-						secondary={!!file.file}
-						outline={!file.file}
-						disabled={uploading || !file.file}
-					>
-						{uploading ? 'uploading...' : 'upload'}
-					</CustomButton>
-					<div className='flex'>
-						<p className={`mr-10 ${uploading ? 'text-gray-500' : ''}`}>
+
+				<div className='py-3 px-8 grow'>
+					<div className='flex items-center gap-x-3 py-3'>
+						<p className={`mr-8 text-lg ${uploading ? 'text-gray-500' : ''}`}>
 							{file?.fileName}
 						</p>
 						<CustomButton
 							outline
 							onClick={imageDelete}
-							className={`${fileIdentifier ? '' : 'hidden'}`}
+							className={`w-[100px] ${fileIdentifier ? '' : 'hidden'}`}
 						>
-							Remove
+							REMOVE
 						</CustomButton>
 					</div>
+
+					<CustomButton
+						onClick={imageUpload}
+						className={`max-w-[150px] h-10 ${fileIdentifier ? 'hidden' : ''}`}
+						secondary={!!file.file}
+						outline={!file.file}
+						disabled={uploading || !file.file}
+					>
+						{uploading ? 'UPLOADING...' : 'UPLOAD'}
+					</CustomButton>
 				</div>
 			</div>
 		</>

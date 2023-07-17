@@ -12,7 +12,7 @@ export const AREA_POSTS = gql`
 			city
 			description
 			rating
-			postedUser
+			userName
 			imageUrl
 			fileIdentifier
 		}
