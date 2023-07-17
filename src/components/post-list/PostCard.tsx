@@ -45,7 +45,7 @@ const PostCard = ({ postData }: PostCardProps) => {
 				<div className='px-6 py-3'>
 					<div className='font-bold text-xl mb-2'>{title}</div>
 					<p className='text-gray-700 text-base'>{`${city}, ${country}`}</p>
-					<p className='text-sm pt-2'>{`Posted By: ${userName}`}</p>
+					<p className='text-sm pt-2'>{`Posted By: ${userName ?? '-'}`}</p>
 				</div>
 				<div className='mt-auto px-6 pb-2 flex justify-between'>
 					<StarRating value={rating} readonly size={18} />
